@@ -18,7 +18,10 @@ const authHandler = NextAuth({
                 }
             }
         })
-    ]
+    ],
+    pages: {
+        signIn: "/login"
+    }
 })
 
 export { authHandler as GET, authHandler as POST };
