@@ -7,7 +7,7 @@ export async function POST(request) {
         const { email, password } = await request.json();
 
         if (!email || !password) {
-            return NextResponse.json({ message: "Both fields are required", result: e }, { status: 400 });
+            return NextResponse.json({ message: "Both fields are required" }, { status: 400 });
         }
 
         const user = await prisma.user.create({
