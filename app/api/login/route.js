@@ -22,6 +22,11 @@ export async function POST(request) {
         if (await bcrypt.compare(password, user.password)) {
             const { password: hashedPasswrod, ...result } = user;
             const accessToken = signJwtAccessToken(result);
+
+            if (!user.is_verified) {
+                return NextResponse.json({ message: "Not verified" }, { status: 400 });
+            }
+
             return NextResponse.json({ result: { ...result, accessToken } }, { status: 200 });
         }
         else {
